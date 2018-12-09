@@ -25,6 +25,7 @@ namespace _4h_proairetiki
         {
             contactList.Clear();
             string[] temp = new string[8];
+            Contact.Count = 0;
 
             using (var streamReader = File.OpenText("contacts.txt"))
             {
@@ -106,6 +107,8 @@ namespace _4h_proairetiki
             int id = int.Parse(item.SubItems[0].Text);
             label1.Text = id.ToString();
             selectedContact = contactList.Find(i => i.Id == id);
+            if (selectedContact == null)
+                return;
             if (selectedContact.ProfilePic != null)
                 pictureBox1.Image = selectedContact.ProfilePic;
             buttonUpdate.Show();

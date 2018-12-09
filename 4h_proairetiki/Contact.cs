@@ -11,7 +11,7 @@ namespace _4h_proairetiki
     public class Contact
     {
         private string name, surname, phone, email, dob, address, notes;
-        private Image profilePic;
+        private Image profilePic = Image.FromFile("no-image.jpg");
         private static int count = 0;
         private int id;
         Regex regexItem;
