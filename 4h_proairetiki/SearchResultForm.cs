@@ -37,6 +37,7 @@ namespace _4h_proairetiki
                 listView1.Items.Add(item);
             }
         }
+        Contact temp;
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -44,13 +45,20 @@ namespace _4h_proairetiki
                 return;
             ListViewItem item = listView1.SelectedItems[0];
             int id = int.Parse(item.SubItems[7].Text);
-            Contact temp = foundContacts.Find(i => i.Id == id);
+            temp = foundContacts.Find(i => i.Id == id);
             if (temp.ProfilePic != null)
                 pictureBox1.Image = temp.ProfilePic;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateForm updateform = new UpdateForm(temp);
+            updateform.ShowDialog();
             this.Close();
         }
     }

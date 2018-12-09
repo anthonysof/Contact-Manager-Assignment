@@ -94,6 +94,8 @@ namespace _4h_proairetiki
         {
             SearchForm searchform = new SearchForm();
             searchform.ShowDialog();
+            listView1.Items.Clear();
+            updateListView();
         }
         Contact selectedContact;
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,6 +119,44 @@ namespace _4h_proairetiki
             updateform.ShowDialog();
             listView1.Items.Clear();
             updateListView();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            string[] temp;
+            string[] finaltext, finaltextarr;
+
+            using (var streamReader = File.OpenText("contacts.txt"))
+            {
+
+                var lines = streamReader.ReadToEnd().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                finaltextarr = new string[lines.Length];
+                if (lines.Length > 0)
+                {
+                    
+                    int i = 0;
+                    foreach (var line in lines)
+                    {
+                        finaltextarr[i] = line;
+                        temp = line.Split('|');
+                        if(temp[0] == selectedContact.Id.ToString())
+                        {
+                            finaltextarr[i] = "";
+                            contactList.Remove(selectedContact);
+                        }
+                        i++;
+                    }
+
+                }
+                finaltext = finaltextarr;
+
+            }
+            
+            File.WriteAllLines("contacts.txt", finaltext);
+            listView1.Items.Clear();
+            pictureBox1.Image = null;
+            updateListView();
+            
         }
     }
 }

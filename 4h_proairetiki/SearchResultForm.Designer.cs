@@ -142,6 +142,7 @@
             this.buttonUpdate.TabIndex = 3;
             this.buttonUpdate.Text = "Update Entry";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonDelete
             // 
