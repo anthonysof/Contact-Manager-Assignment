@@ -59,7 +59,7 @@ namespace _4h_proairetiki
         {
             listView1.View = View.Details;
             if (!File.Exists("contacts.txt"))
-                File.Create("contacts.txt");
+                File.Create("contacts.txt").Dispose();
 
             contactList = new List<Contact>();
             updateListView();
@@ -160,6 +160,11 @@ namespace _4h_proairetiki
             pictureBox1.Image = null;
             updateListView();
             
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
